@@ -1,62 +1,66 @@
 # ========================================
-# [Enter your name here]
-# [Enter course number here]
+# Hebrert Doucet    
+# CIS261
 # Lab: Movie Guide Part 1
 # ========================================
-
-# Step 1: Create an empty list to store movies
 movies = []
-
-# Step 2: Create the menu display function
 def show_menu():
-    """Display the menu options for the user."""
-    # TODO: Add print statements to show:
-    # - Movie Guide header
-    # - Separator line using "=" * 12
-    # - COMMAND MENU
-    # - Four command options (lists, add, del, exit)
+    print("The Movie List Program")
+    print()
+    print("COMMAND MENU")
+    print("list - List all movies")
+    print("add - Add a movie")
+    print("del - Delete a movie")
+    print("exit - Exit program")
+    print()
+ 
+def list(movie_list):
+    if len(movie_list) == 0:
+        print("There are no movies in the list.\n")
+        return
+    else:
+        i = 1
+        for movie in movie_list:
+            row = movie
+            print(str(i) + "." + row[0] + " (" + str(row[1]) + ")")
+            i += 1
+        print()
+            
+def add(movie_list):
+    name = input("Name: ")
+    movie = []
+    movie.append(name)
+    movie_list.append(movie)
+    print(movie[0] + " was added.\n")
 
-
-# Step 3: Create the function to list all movies
-def list_movies():
-    """Display all movies in the list with numbers."""
-    # TODO: Add code to:
-    # - Print "Movies:" header
-    # - Loop through movies list and display each with a number
-    # - Call show_menu() at the end
-
-
-# Step 4: Create the function to add a movie
-def add_movie():
-    """Get movie name from user and add it to the list."""
-    # TODO: Add code to:
-    # - Get movie title from user using input()
-    # - Add the title to movies list
-    # - Print success message
-    # - Call list_movies()
-
-
-# Step 5: Create the function to delete a movie
-def delete_movie():
-    """Delete a movie from the list by number."""
-    # TODO: Add code to:
-    # - Show current list of movies
-    # - Get movie number from user
-    # - Check if number is valid
-    # - Delete movie if valid, show error if invalid
-    # - Show updated list or error message
-
-    
-# Step 6: Create the main function
+def delete(movie_list):
+    number = int(input("Number: "))
+    number = int(input("Number: "))
+    if number < 1 or number > len(movie_list):
+        print("Invalid movie number.\n")
+    else:
+        movie = movie_list.pop(number-1)
+        print(movie[0] + " was deleted.\n")
+        
 def main():
-    """Main program loop."""
-    # TODO: Add code to:
-    # - Show initial menu
-    # - Start loop to get commands
-    # - Check commands and call appropriate functions
-    # - Exit when user chooses
+    movie_list = [["Monty Python and the Holy Grail", 1975],["On the Waterfront", 1954],
+                  ["Cat pn a Hot Tin Roof" , 1958]]
+    
+    show_menu()
+    while True:
+        command = input("Command: ")
+        if command == "list":
+            list(movie_list)
+        elif command == "add":
+            add(movie_list)
+        elif command == "del":
+            delete(movie_list)
+        elif command == "exit":
+            break
+        else:
+            print("Not a valid command. Please try again.\n")
+    print("Bye!")
+            
 
-
-# Step 7: Add the program start line
 if __name__ == "__main__":
     main()
